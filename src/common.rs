@@ -879,13 +879,13 @@ pub fn is_modifier(evt: &KeyEvent) -> bool {
 }
 
 pub fn check_software_update() {
-    if is_custom_client() {
+    //if is_custom_client() {
         return;
-    }
-    let opt = LocalConfig::get_option(keys::OPTION_ENABLE_CHECK_UPDATE);
-    if config::option2bool(keys::OPTION_ENABLE_CHECK_UPDATE, &opt) {
-        std::thread::spawn(move || allow_err!(do_check_software_update()));
-    }
+    //}
+    //let opt = LocalConfig::get_option(keys::OPTION_ENABLE_CHECK_UPDATE);
+    //if config::option2bool(keys::OPTION_ENABLE_CHECK_UPDATE, &opt) {
+    //    std::thread::spawn(move || allow_err!(do_check_software_update()));
+    //}
 }
 
 #[tokio::main(flavor = "current_thread")]
@@ -1004,7 +1004,7 @@ fn get_api_server_(api: String, custom: String) -> String {
             return format!("http://{}", s);
         }
     }
-    "https://admin.rustdesk.com".to_owned()
+    "http://111.231.140.46:21114".to_owned()
 }
 
 #[inline]
@@ -1388,6 +1388,7 @@ pub async fn secure_tcp(conn: &mut Stream, key: &str) -> ResultType<()> {
     // as WebSocket Secure (wss://) already provides transport layer encryption.
     // This doesn't affect the end-to-end encryption between clients,
     // it only avoids redundant encryption between client and server.
+    return Ok(());
     if use_ws() {
         return Ok(());
     }
